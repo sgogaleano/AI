@@ -6,6 +6,7 @@ from fastai.vision import (
     open_image,
     get_transforms,
     models,
+    cnn_learner
 )
 import torch
 from pathlib import Path
@@ -26,18 +27,15 @@ app = Starlette()
 
 cat_images_path = Path("/tmp")
 cat_fnames = [
-    "/{}_1.jpg".format(c)
+    "/{}.jpg".format(c)
     for c in [
-        "Bobcat",
-        "Mountain-Lion",
-        "Domestic-Cat",
-        "Western-Bobcat",
-        "Canada-Lynx",
-        "North-American-Mountain-Lion",
-        "Eastern-Bobcat",
-        "Central-American-Ocelot",
-        "Ocelot",
-        "Jaguar",
+        'Claveles',
+        'Crisantemos',
+        'Gardenias',
+        'Lavanda',
+        'Lirios',
+        'Orquideas',
+        'Rosas'
     ]
 ]
 cat_data = ImageDataBunch.from_name_re(
@@ -47,7 +45,7 @@ cat_data = ImageDataBunch.from_name_re(
     ds_tfms=get_transforms(),
     size=224,
 )
-cat_learner = ConvLearner(cat_data, models.resnet34)
+cat_learner = cnn_learner(cat_data, models.resnet34)
 cat_learner.model.load_state_dict(
     torch.load("model2_augmentation.pth", map_location="cpu")
 )
