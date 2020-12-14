@@ -49,7 +49,7 @@ cat_data = ImageDataBunch.from_name_re(
 )
 cat_learner = ConvLearner(cat_data, models.resnet34)
 cat_learner.model.load_state_dict(
-    torch.load("usa-inaturalist-cats.pth", map_location="cpu")
+    torch.load("model2_augmentation.pth", map_location="cpu")
 )
 
 
