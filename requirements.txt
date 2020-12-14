@@ -1,0 +1,6 @@
+fastai==1.0.61
+starlette
+uvicorn
+python-multipart
+aiohttp
+torch_nightly
